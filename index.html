@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<template id="__bundler_thumbnail" data-bg-color="#3A332A">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#3A332A"/>
+    <circle cx="600" cy="330" r="150" fill="none" stroke="#B68911" stroke-width="6"/>
+    <text x="600" y="345" font-family="Georgia,serif" font-size="120" fill="#B68911" text-anchor="middle" font-style="italic">DC</text>
+    <text x="600" y="560" font-family="Arial,sans-serif" font-size="34" letter-spacing="4" fill="#F1E9DF" text-anchor="middle">DREAM CLEAN × ATRIUM</text>
+  </svg>
+</template>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Atrium Resident Perk — 15% Off Cleaning | Dream Clean by DC</title>
+<link rel="stylesheet" href="_ds/dream-clean-design-system-3942b4b0-2ba8-4ffc-b1cc-bcec59a66d3f/tokens/colors.css">
+<link rel="stylesheet" href="_ds/dream-clean-design-system-3942b4b0-2ba8-4ffc-b1cc-bcec59a66d3f/tokens/typography.css">
+<link rel="stylesheet" href="_ds/dream-clean-design-system-3942b4b0-2ba8-4ffc-b1cc-bcec59a66d3f/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/dream-clean-design-system-3942b4b0-2ba8-4ffc-b1cc-bcec59a66d3f/tokens/effects.css">
+<link rel="stylesheet" href="_ds/dream-clean-design-system-3942b4b0-2ba8-4ffc-b1cc-bcec59a66d3f/styles.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Cormorant+Garamond:wght@500;600&display=swap">
+<script src="_ds/dream-clean-design-system-3942b4b0-2ba8-4ffc-b1cc-bcec59a66d3f/_ds_bundle.js"></script>
+<style>
+  body{margin:0;background:var(--surface-canvas)}
+  a{color:inherit;text-decoration:none}
+  a:hover{color:var(--dc-gold)}
+</style>
+</helmet>
+
+<div style="font-family:var(--font-body);color:var(--text-body);line-height:1.6;background:var(--surface-canvas)">
+
+<header style="display:flex;align-items:center;justify-content:center;position:relative;padding:26px 24px;border-bottom:1px solid var(--border-subtle)">
+  <img src="assets/logos/horizontal_gold_espresso_on_transparent.png" alt="Dream Clean by DC" style="height:46px">
+  <button onClick="{{ toggleLang }}" style="position:absolute;right:24px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:6px;border:1px solid var(--border-subtle);border-radius:100px;padding:6px 12px;background:#fff;cursor:pointer;font-family:'Montserrat',var(--font-body);font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--dc-espresso)">
+    <span style="{{ enActiveStyle }}">EN</span><span style="color:var(--border-subtle)">/</span><span style="{{ esActiveStyle }}">ES</span>
+  </button>
+</header>
+
+<!-- HERO -->
+<section style="position:relative;padding:130px 24px 110px;text-align:center;color:var(--text-on-dark);overflow:hidden">
+  <div style="position:absolute;inset:0">
+    <img src="assets/atrium-office.jpg" alt="" style="width:100%;height:100%;object-fit:cover">
+  </div>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(24,18,12,.55) 0%,rgba(24,18,12,.82) 55%,var(--dc-espresso) 100%)"></div>
+  <img src="assets/logos/submark_gold_on_espresso.png" alt="Dream Clean by DC" style="position:relative;width:64px;margin:0 auto 18px;display:block;opacity:.95">
+  <div style="position:relative;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:22px">
+    <span style="font-family:'Montserrat',var(--font-body);font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--dc-gold-light)">DREAM CLEAN CORPORATE CARE</span>
+    <span style="color:rgba(245,245,239,.4)">×</span>
+    <img src="assets/logos/atrium-icon-mark.png" alt="Atrium" style="width:26px;height:26px;border-radius:5px;display:block">
+  </div>
+  <div style="position:relative;display:inline-block;padding:8px 18px;border-radius:100px;border:1px solid rgba(245,245,239,.3);font-size:var(--text-caption);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--dc-gold-light);margin-bottom:22px">{{ t.heroEyebrow }}</div>
+  <h1 style="position:relative;font-family:var(--font-display);font-size:clamp(2.2rem,5vw,3.6rem);font-weight:600;max-width:820px;margin:0 auto 20px;line-height:1.15">{{ t.heroTitle }}</h1>
+  <p style="position:relative;font-size:var(--text-lead);color:rgba(245,245,239,.85);max-width:560px;margin:0 auto 34px">{{ t.heroSub }}</p>
+  <a href="#form" style="position:relative;display:inline-flex;align-items:center;justify-content:center;padding:16px 34px;border-radius:100px;font-size:var(--text-body);font-weight:600;background:var(--dc-gold);color:#fff" style-hover="background:var(--dc-gold-light)">{{ t.heroCta }}</a>
+</section>
+
+<!-- BENEFITS -->
+<section style="max-width:var(--container-max);margin:0 auto;padding:100px 24px">
+  <div style="text-align:center;max-width:var(--container-narrow);margin:0 auto 56px">
+    <div style="font-size:var(--text-caption);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--dc-gold);font-weight:600;margin-bottom:14px">{{ t.benefitsEyebrow }}</div>
+    <h2 style="font-family:var(--font-display);font-size:var(--text-display-md);margin:0;font-weight:600">{{ t.benefitsTitle }}</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px">
+    <sc-for list="{{ t.benefits }}" as="b" hint-placeholder-count="4">
+      <div style="background:var(--surface-card);border:1px solid var(--border-subtle);border-radius:16px;padding:30px 24px">
+        <div style="font-family:var(--font-display);color:var(--dc-gold);font-size:14px;letter-spacing:.08em;margin-bottom:14px">{{ b.num }}</div>
+        <h3 style="font-family:var(--font-display);font-size:19px;margin:0 0 8px;font-weight:600">{{ b.title }}</h3>
+        <p style="color:var(--text-muted);font-size:14.5px;margin:0">{{ b.desc }}</p>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section style="background:var(--surface-section);padding:100px 24px;border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle)">
+  <div style="max-width:var(--container-max);margin:0 auto">
+    <div style="text-align:center;max-width:var(--container-narrow);margin:0 auto 56px">
+      <div style="font-size:var(--text-caption);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--dc-gold);font-weight:600;margin-bottom:14px">{{ t.processEyebrow }}</div>
+      <h2 style="font-family:var(--font-display);font-size:var(--text-display-md);margin:0;font-weight:600">{{ t.processTitle }}</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px">
+      <sc-for list="{{ t.steps }}" as="s" hint-placeholder-count="4">
+        <div style="text-align:center">
+          <div style="width:48px;height:48px;border-radius:50%;background:var(--dc-espresso);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:18px;margin:0 auto 18px">{{ s.n }}</div>
+          <h4 style="font-family:var(--font-display);font-size:16px;margin:0 0 6px;font-weight:600">{{ s.title }}</h4>
+          <p style="color:var(--text-muted);font-size:13.5px;margin:0">{{ s.desc }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INCLUDED -->
+<section style="max-width:var(--container-max);margin:0 auto;padding:100px 24px;display:grid;{{ includedGridStyle }};gap:60px;align-items:start">
+  <div>
+    <div style="font-size:var(--text-caption);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--dc-gold);font-weight:600;margin-bottom:14px">{{ t.standardLabel }}</div>
+    <h3 style="font-family:var(--font-display);font-size:26px;margin:0 0 18px;font-weight:600">{{ t.includedTitle }}</h3>
+    <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px">
+      <sc-for list="{{ t.standardIncludes }}" as="item" hint-placeholder-count="4">
+        <li style="padding-left:26px;position:relative;font-size:14.5px"><span style="position:absolute;left:0;top:9px;width:14px;height:1px;background:var(--dc-gold)"></span>{{ item }}</li>
+      </sc-for>
+    </ul>
+  </div>
+  <div>
+    <div style="font-size:var(--text-caption);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--dc-gold);font-weight:600;margin-bottom:14px">{{ t.deepLabel }}</div>
+    <h3 style="font-family:var(--font-display);font-size:26px;margin:0 0 18px;font-weight:600">{{ t.includedTitle }}</h3>
+    <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px">
+      <sc-for list="{{ t.deepIncludes }}" as="item" hint-placeholder-count="4">
+        <li style="padding-left:26px;position:relative;font-size:14.5px"><span style="position:absolute;left:0;top:9px;width:14px;height:1px;background:var(--dc-gold)"></span>{{ item }}</li>
+      </sc-for>
+    </ul>
+  </div>
+</section>
+
+<!-- PRICING with discount -->
+<section style="background:var(--surface-section);padding:90px 24px;border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle)">
+  <div style="max-width:var(--container-max);margin:0 auto">
+    <div style="text-align:center;max-width:var(--container-narrow);margin:0 auto 46px">
+      <div style="font-size:var(--text-caption);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--dc-gold);font-weight:600;margin-bottom:14px">{{ t.pricingEyebrow }}</div>
+      <h2 style="font-family:var(--font-display);font-size:var(--text-display-md);margin:0;font-weight:600">{{ t.pricingTitle }}</h2>
+    </div>
+    <div style="max-width:520px;margin:0 auto 40px;background:var(--surface-card);border:1px solid var(--border-subtle);border-radius:16px;padding:26px 24px">
+      <div style="font-size:var(--text-caption);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--text-muted);font-weight:600;margin-bottom:9px">{{ t.calcTypeLabel }}</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px">
+        <sc-for list="{{ typeOptions }}" as="opt" hint-placeholder-count="3">
+          <div data-key="{{ opt.key }}" onClick="{{ selectType }}" style="border:1px solid var(--border-subtle);border-radius:6px;padding:11px 8px;font-size:13px;font-weight:600;cursor:pointer;text-align:center;transition:.15s;{{ opt.style }}">{{ opt.label }}</div>
+        </sc-for>
+      </div>
+
+      <div style="font-size:var(--text-caption);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--text-muted);font-weight:600;margin-bottom:9px">{{ t.calcSizeLabel }}</div>
+      <div style="text-align:center;font-family:var(--font-display);font-size:24px;font-weight:600;color:var(--dc-espresso)">{{ sqftOut }} <span style="font-size:13px;color:var(--text-muted);font-family:var(--font-body);font-weight:500">sq ft</span></div>
+      <input type="range" min="400" max="6000" step="50" value="{{ sqft }}" onChange="{{ onSqftChange }}" style="width:100%;margin-top:8px;accent-color:var(--dc-gold);height:4px">
+      <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text-muted);margin:2px 0 18px"><span>400</span><span>6,000+</span></div>
+
+      <div style="font-size:var(--text-caption);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--text-muted);font-weight:600;margin-bottom:9px">{{ t.calcBedLabel }}</div>
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:18px">
+        <sc-for list="{{ bedOptions }}" as="opt" hint-placeholder-count="6">
+          <div data-key="{{ opt.key }}" onClick="{{ selectBed }}" style="border:1px solid var(--border-subtle);border-radius:6px;padding:9px 4px;font-size:12.5px;font-weight:600;cursor:pointer;text-align:center;transition:.15s;{{ opt.style }}">{{ opt.label }}</div>
+        </sc-for>
+      </div>
+
+      <div style="font-size:var(--text-caption);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--text-muted);font-weight:600;margin-bottom:9px">{{ t.calcBathLabel }}</div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px">
+        <sc-for list="{{ bathOptions }}" as="opt" hint-placeholder-count="5">
+          <div data-key="{{ opt.key }}" onClick="{{ selectBath }}" style="border:1px solid var(--border-subtle);border-radius:6px;padding:9px 4px;font-size:12.5px;font-weight:600;cursor:pointer;text-align:center;transition:.15s;{{ opt.style }}">{{ opt.label }}</div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px">
+      <sc-for list="{{ pricingTiers }}" as="tier" hint-placeholder-count="3">
+        <div style="background:var(--surface-card);border:1px solid var(--border-subtle);border-radius:16px;padding:30px 24px;text-align:center">
+          <div style="font-size:var(--text-caption);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--text-muted);font-weight:600;margin-bottom:14px">{{ tier.label }}</div>
+          <div style="font-family:'Cormorant Garamond',var(--font-display);font-size:18px;color:var(--text-faint);text-decoration:line-through;line-height:1;margin-bottom:6px">{{ tier.original }}</div>
+          <div style="font-family:var(--font-display);font-weight:700;font-size:28px;color:#A5792A;line-height:1">{{ tier.final }}</div>
+          <div style="display:inline-block;margin-top:12px;background:var(--dc-gold);color:#fff;font-family:'Montserrat',var(--font-body);font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:6px 14px;border-radius:100px">{{ tier.badge }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <p style="text-align:center;font-size:12px;color:var(--text-muted);margin-top:28px">{{ t.pricingNote }}</p>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section style="max-width:var(--container-narrow);margin:0 auto;padding:100px 24px;text-align:center">
+  <img src="assets/logos/submark_gold_on_espresso.png" alt="" style="width:56px;opacity:.85;margin:0 auto 26px">
+  <p style="font-family:var(--font-display);font-style:italic;font-size:22px;line-height:1.5;color:var(--dc-espresso);margin:0 0 18px">{{ t.testimonialQuote }}</p>
+  <cite style="font-size:var(--text-small);color:var(--text-muted);font-style:normal">{{ t.testimonialAuthor }}</cite>
+</section>
+
+<!-- FAQ -->
+<section style="max-width:720px;margin:0 auto;padding:0 24px 100px">
+  <div style="text-align:center;margin-bottom:46px">
+    <div style="font-size:var(--text-caption);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--dc-gold);font-weight:600;margin-bottom:14px">{{ t.faqEyebrow }}</div>
+    <h2 style="font-family:var(--font-display);font-size:var(--text-display-md);margin:0;font-weight:600">{{ t.faqTitle }}</h2>
+  </div>
+  <sc-for list="{{ faqs }}" as="faq" hint-placeholder-count="6">
+    <div style="border-bottom:1px solid var(--border-subtle)">
+      <div onClick="{{ toggleFaq }}" data-idx="{{ faq.idx }}" style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:20px 4px;cursor:pointer">
+        <h4 style="font-family:var(--font-display);font-size:16.5px;font-weight:600;margin:0">{{ faq.q }}</h4>
+        <span style="font-size:20px;color:var(--dc-gold);flex:0 0 auto;transform:{{ faq.iconTransform }};transition:transform .25s;display:inline-block">+</span>
+      </div>
+      <div style="overflow:hidden;transition:max-height .35s ease,opacity .3s ease;max-height:{{ faq.maxHeight }};opacity:{{ faq.opacity }}">
+        <p style="font-size:14px;color:var(--text-muted);margin:0 4px 20px;line-height:1.6">{{ faq.a }}</p>
+      </div>
+    </div>
+  </sc-for>
+</section>
+
+<!-- FORM -->
+<section id="form" style="background:var(--dc-espresso);padding:110px 24px 130px;color:var(--text-on-dark)">
+  <div style="text-align:center;max-width:var(--container-narrow);margin:0 auto 44px">
+    <div style="font-size:var(--text-caption);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--dc-gold-light);font-weight:600;margin-bottom:14px">{{ t.formEyebrow }}</div>
+    <h2 style="font-family:var(--font-display);font-size:var(--text-display-md);margin:0;font-weight:600;color:var(--text-on-dark)">{{ t.formTitle }}</h2>
+    <p style="margin-top:14px;font-size:var(--text-body);color:rgba(245,245,239,.78)">{{ t.formSub }}</p>
+  </div>
+
+  <div style="max-width:460px;margin:0 auto">
+    <div style="background:#fff;border-radius:16px;padding:34px 28px;color:var(--text-body);box-shadow:var(--shadow-dark-lg)">
+
+      <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
+      <div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+          <label style="font-size:var(--text-caption);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--text-muted)">{{ t.fieldName }}</label>
+          <input type="text" placeholder="Jane Smith" value="{{ name }}" onChange="{{ onNameChange }}" style="border-radius:6px;padding:11px 12px;font-size:14px;font-family:var(--font-body);color:var(--dc-espresso);background:var(--surface-canvas);outline:none;border:1px solid {{ nameBorder }}">
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+          <label style="font-size:var(--text-caption);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--text-muted)">{{ t.fieldPhone }}</label>
+          <input type="tel" placeholder="(407) 555-0123" value="{{ phone }}" onChange="{{ onPhoneChange }}" style="border-radius:6px;padding:11px 12px;font-size:14px;font-family:var(--font-body);color:var(--dc-espresso);background:var(--surface-canvas);outline:none;border:1px solid {{ phoneBorder }}">
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+          <label style="font-size:var(--text-caption);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--text-muted)">{{ t.fieldEmail }}</label>
+          <input type="email" placeholder="jane@email.com" value="{{ email }}" onChange="{{ onEmailChange }}" style="border-radius:6px;padding:11px 12px;font-size:14px;font-family:var(--font-body);color:var(--dc-espresso);background:var(--surface-canvas);outline:none;border:1px solid {{ emailBorder }}">
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+          <label style="font-size:var(--text-caption);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--text-muted)">{{ t.fieldPropertyType }}</label>
+          <select value="{{ propertyType }}" onChange="{{ onPropertyTypeChange }}" style="border-radius:6px;padding:11px 12px;font-size:14px;font-family:var(--font-body);color:var(--dc-espresso);background:var(--surface-canvas);outline:none;border:1px solid var(--border-subtle)">
+            <sc-for list="{{ t.propertyOptions }}" as="opt" hint-placeholder-count="3">
+              <option value="{{ opt.value }}">{{ opt.label }}</option>
+            </sc-for>
+          </select>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:6px">
+          <label style="font-size:var(--text-caption);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--text-muted)">{{ t.fieldDatePref }}</label>
+          <input type="text" placeholder="{{ t.datePrefPlaceholder }}" value="{{ datePref }}" onChange="{{ onDatePrefChange }}" style="border-radius:6px;padding:11px 12px;font-size:14px;font-family:var(--font-body);color:var(--dc-espresso);background:var(--surface-canvas);outline:none;border:1px solid var(--border-subtle)">
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:6px;margin-top:14px">
+          <label style="font-size:var(--text-caption);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--text-muted)">{{ t.fieldDiscount }}</label>
+          <div style="display:flex;align-items:center;justify-content:space-between;border-radius:6px;padding:11px 12px;background:var(--surface-gold-tint);border:1px solid var(--dc-gold)">
+            <span style="font-family:'Montserrat',var(--font-body);font-weight:700;letter-spacing:.06em;color:var(--dc-espresso)">ATRIUM15</span>
+            <span style="font-size:10.5px;color:var(--dc-espresso);font-weight:600">{{ t.discountApplied }}</span>
+          </div>
+        </div>
+
+        <sc-if value="{{ formErr }}" hint-placeholder-val="{{ false }}">
+        <div style="font-size:11px;color:var(--status-danger);margin-top:10px">{{ t.formErrMsg }}</div>
+        </sc-if>
+
+        <button onClick="{{ submitForm }}" style="width:100%;margin-top:20px;border:none;cursor:pointer;font-family:var(--font-body);font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:14px;border-radius:6px;background:var(--dc-gold);color:#fff;{{ sendingStyle }}">{{ submitLabel }}</button>
+        <div style="font-size:10px;color:var(--text-muted);text-align:center;margin-top:12px;line-height:1.5">{{ t.formDisclaimer }}</div>
+      </div>
+      </sc-if>
+
+      <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+      <div style="text-align:center;padding:20px 0">
+        <div style="font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--dc-espresso);margin-bottom:10px">{{ t.thankYouTitle }}</div>
+        <p style="font-size:13.5px;color:var(--text-muted);margin:0 0 6px;line-height:1.6">{{ t.thankYouBody }}</p>
+      </div>
+      </sc-if>
+
+    </div>
+  </div>
+</section>
+
+<footer style="background:var(--dc-espresso);color:var(--text-on-dark-muted);padding:34px 24px;text-align:center;font-size:12px">
+  © 2026 Dream Clean by DC · Orlando · Central Florida
+</footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
+const EN = {
+  heroEyebrow: 'Exclusive Atrium Perk',
+  heroTitle: "Your exclusive cleaning benefit as part of Atrium's Team",
+  heroSub: 'Enjoy 15% off your next standard or deep clean — just for being part of the Atrium community.',
+  heroCta: 'Request your quote with 15% off',
+  benefitsEyebrow: 'Why Dream Clean', benefitsTitle: 'Service benefits',
+  benefits: [
+    { num:'01', title:'Reliable', desc:'We show up on time, every time, with the same detailed checklist.' },
+    { num:'02', title:'Vetted staff', desc:'Every member of our team passes a background check.' },
+    { num:'03', title:'Flexible', desc:'One-time or recurring, on the schedule that works for you.' },
+    { num:'04', title:'Satisfaction guarantee', desc:"If something isn't perfect, we'll make it right at no extra cost." }
+  ],
+  processEyebrow: 'Process', processTitle: 'How it works',
+  steps: [
+    { n:1, title:'Request your quote', desc:'Fill out the form with your info and date preference.' },
+    { n:2, title:'Get your estimate with the discount', desc:'Your 15% Atrium discount is applied automatically.' },
+    { n:3, title:'Book your date', desc:"We'll confirm by phone or email within 24 hours." },
+    { n:4, title:'Enjoy your clean home', desc:'Our team arrives, cleans, and you just enjoy the result.' }
+  ],
+  standardLabel: 'Standard clean', deepLabel: 'Deep clean', includedTitle: "What's included",
+  standardIncludes: ['Dusting, vacuuming & mopping throughout', 'Kitchen counters, sink & appliance exteriors cleaned', 'Bathrooms cleaned & disinfected', 'Beds made, trash emptied, surfaces tidied'],
+  deepIncludes: ['Everything in the standard clean', 'Baseboards, door frames & light switches detailed', 'Cabinet fronts, blinds & window sills', 'Tile, grout & showerheads deep-scrubbed'],
+  pricingEyebrow: 'Your discounted price', pricingTitle: '15% off applied automatically',
+  pricingNote: 'Estimate updates live based on your home size — final price confirmed at booking.',
+  calcTypeLabel: 'Type of cleaning', calcSizeLabel: 'Approx. size', calcBedLabel: 'Bedrooms', calcBathLabel: 'Bathrooms',
+  testimonialQuote: '"Reliable, vetted, and on time — every single visit. Our home has never felt this consistently clean."',
+  testimonialAuthor: 'Resident, Atrium Community',
+  faqEyebrow: 'Frequently asked questions', faqTitle: 'FAQ',
+  faqs: [
+    { q:'How do I use the discount?', a:'Your Atrium discount code (ATRIUM15) is already applied automatically when you submit the form on this page — no action needed.' },
+    { q:'Does it apply to all services?', a:'It applies to standard and deep cleans. Move-in/move-out and commercial spaces are custom-quoted separately.' },
+    { q:'Can I cancel or reschedule?', a:"Yes — just give us at least 24 hours' notice and we'll move your appointment at no charge." },
+    { q:'Is this a recurring discount?', a:"It applies to your first booking through this page. Ask your Dream Clean rep about ongoing resident pricing for recurring service." },
+    { q:'Do I need to be a current resident?', a:'Yes, this offer is exclusive to current Atrium employees and residents.' },
+    { q:'How is my final price determined?', a:'Your estimate is based on home size, bedrooms/bathrooms, and any add-ons — we confirm the exact total with you before your visit.' }
+  ],
+  formEyebrow: 'Request your quote', formTitle: 'Your 15% Atrium discount',
+  formSub: "Fill in your details and we'll reach out to confirm your discounted quote.",
+  fieldName: 'Full name', fieldPhone: 'Phone', fieldEmail: 'Email', fieldPropertyType: 'Property type', fieldDatePref: 'Date/time preference',
+  datePrefPlaceholder: 'e.g. Saturday mornings',
+  propertyOptions: [{ value:'apartment', label:'Apartment / Condo' }, { value:'townhome', label:'Townhome' }, { value:'house', label:'Single-family home' }],
+  fieldDiscount: 'Discount code', discountApplied: '✓ Applied',
+  formErrMsg: 'Please complete your name, phone, and a valid email.',
+  formDisclaimer: 'By continuing, you agree Dream Clean may contact you about this quote.',
+  thankYouTitle: 'Thank you for trusting us!', thankYouBody: "We'll reach out to schedule your cleaning within 12–24 hrs."
+};
+const ES = {
+  heroEyebrow: 'Beneficio exclusivo Atrium',
+  heroTitle: 'Tu beneficio exclusivo de limpieza como parte de Atrium',
+  heroSub: 'Disfruta un 15% de descuento en tu próxima limpieza estándar o profunda — solo por ser parte de la comunidad Atrium.',
+  heroCta: 'Solicita tu cotización con 15% off',
+  benefitsEyebrow: 'Por qué Dream Clean', benefitsTitle: 'Beneficios de tu servicio',
+  benefits: [
+    { num:'01', title:'Confiable', desc:'Llegamos a tiempo, cada vez, con el mismo checklist detallado.' },
+    { num:'02', title:'Personal verificado', desc:'Todo nuestro equipo pasa por verificación de antecedentes.' },
+    { num:'03', title:'Flexible', desc:'Agenda única o recurrente, en el horario que mejor te convenga.' },
+    { num:'04', title:'Garantía de satisfacción', desc:'Si algo no quedó perfecto, lo corregimos sin costo adicional.' }
+  ],
+  processEyebrow: 'Proceso', processTitle: 'Cómo funciona',
+  steps: [
+    { n:1, title:'Solicita tu cotización', desc:'Completa el formulario con tus datos y preferencia de fecha.' },
+    { n:2, title:'Recibe tu estimado con descuento', desc:'Tu 15% de descuento Atrium ya viene aplicado automáticamente.' },
+    { n:3, title:'Agenda tu fecha', desc:'Confirmamos por teléfono o correo en menos de 24 horas.' },
+    { n:4, title:'Disfruta tu casa limpia', desc:'Nuestro equipo llega, limpia, y tú solo disfrutas el resultado.' }
+  ],
+  standardLabel: 'Limpieza estándar', deepLabel: 'Deep clean', includedTitle: 'Qué incluye',
+  standardIncludes: ['Sacudido, aspirado y trapeado en toda la casa', 'Cocina: barras, tarja y exterior de electrodomésticos', 'Baños limpiados y desinfectados', 'Camas tendidas, basura vaciada, espacios ordenados'],
+  deepIncludes: ['Todo lo de la limpieza estándar', 'Zócalos, marcos de puertas y apagadores detallados', 'Frentes de gabinetes, persianas y marcos de ventanas', 'Azulejo, lechada y regaderas a fondo'],
+  pricingEyebrow: 'Tu precio con descuento', pricingTitle: '15% off aplicado automáticamente',
+  pricingNote: 'El estimado se actualiza en vivo según el tamaño de tu hogar — precio final confirmado al agendar.',
+  calcTypeLabel: 'Tipo de limpieza', calcSizeLabel: 'Tamaño aprox.', calcBedLabel: 'Recámaras', calcBathLabel: 'Baños',
+  testimonialQuote: '"Reliable, vetted, and on time — every single visit. Our home has never felt this consistently clean."',
+  testimonialAuthor: 'Residente, comunidad Atrium',
+  faqEyebrow: 'Preguntas frecuentes', faqTitle: 'FAQ',
+  faqs: [
+    { q:'¿Cómo uso el descuento?', a:'Tu código de descuento Atrium (ATRIUM15) ya se aplica automáticamente al enviar el formulario de esta página — no necesitas hacer nada más.' },
+    { q:'¿Aplica a todos los servicios?', a:'Aplica a limpiezas estándar y profundas. Move-in/move-out y espacios comerciales se cotizan por separado.' },
+    { q:'¿Puedo cancelar o reprogramar?', a:'Sí — solo avísanos con al menos 24 horas de anticipación y movemos tu cita sin costo.' },
+    { q:'¿Es un descuento recurrente?', a:'Aplica a tu primera reserva a través de esta página. Pregunta a tu representante de Dream Clean sobre precios continuos para residentes.' },
+    { q:'¿Necesito ser residente actual?', a:'Sí, esta oferta es exclusiva para empleados y residentes actuales de Atrium.' },
+    { q:'¿Cómo se determina mi precio final?', a:'Tu estimado se basa en el tamaño de tu hogar, recámaras/baños y cualquier extra — confirmamos el total exacto contigo antes de tu visita.' }
+  ],
+  formEyebrow: 'Solicita tu cotización', formTitle: 'Tu 15% de descuento Atrium',
+  formSub: 'Completa tus datos y te contactamos para confirmar tu cotización con descuento.',
+  fieldName: 'Nombre completo', fieldPhone: 'Teléfono', fieldEmail: 'Email', fieldPropertyType: 'Tipo de propiedad', fieldDatePref: 'Preferencia de fecha/hora',
+  datePrefPlaceholder: 'Ej. Sábados por la mañana',
+  propertyOptions: [{ value:'apartment', label:'Apartamento / Condo' }, { value:'townhome', label:'Townhome' }, { value:'house', label:'Casa unifamiliar' }],
+  fieldDiscount: 'Código de descuento', discountApplied: '✓ Aplicado',
+  formErrMsg: 'Por favor completa nombre, teléfono y un email válido.',
+  formDisclaimer: 'Al continuar, aceptas que Dream Clean te contacte sobre esta cotización.',
+  thankYouTitle: '¡Gracias por confiar en nosotros!', thankYouBody: 'Te contactaremos para agendar tu limpieza dentro de las próximas 12-24 horas.'
+};
+
+const SUPABASE_URL = 'https://gdnmgcqmdllviqjvyqot.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_gfOVX2vGt_OozmHrQxDW0A_nlqvrdOn';
+const RATES = {
+  standard: { low: 0.16, high: 0.19, min: 120 },
+  deep:     { low: 0.24, high: 0.26, min: 200 },
+  move:     { low: 0.27, high: 0.33, min: 240 }
+};
+const BATH_EXTRA = { low: 8, high: 12 };
+const SEL_STYLE = 'background:var(--dc-gold);color:#fff;border-color:var(--dc-gold)';
+const UNSEL_STYLE = 'background:var(--surface-canvas);color:var(--dc-espresso);border-color:var(--border-subtle)';
+
+class Component extends DCLogic {
+  state = {
+    lang: 'en',
+    faqOpen: null,
+    discountValue: 15, discountType: 'percent',
+    calcType: 'standard', sqft: 1500, bedrooms: '2', bathrooms: '2',
+    name: '', phone: '', email: '', propertyType: 'apartment', datePref: '',
+    formErr: false, sending: false, submitted: false
+  };
+
+  componentDidMount() {
+    this.fetchDiscount();
+  }
+
+  async fetchDiscount() {
+    try {
+      const res = await fetch(SUPABASE_URL + '/rest/v1/rpc/validate_discount_code', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY },
+        body: JSON.stringify({ p_code: 'ATRIUM15' })
+      });
+      if (!res.ok) return;
+      const data = await res.json();
+      if (typeof data === 'number') this.setState({ discountValue: data, discountType: 'percent' });
+      else if (data && typeof data === 'object') {
+        const type = data.discount_type || (data.percent_off != null ? 'percent' : (data.amount_off != null ? 'flat' : 'percent'));
+        const value = data.percent_off ?? data.amount_off;
+        if (value) this.setState({ discountType: type, discountValue: value });
+      }
+    } catch (e) { /* keep default 15% */ }
+  }
+
+  toggleLang = () => this.setState((s) => ({ lang: s.lang === 'en' ? 'es' : 'en' }));
+  toggleFaq = (e) => {
+    const idx = +e.currentTarget.dataset.idx;
+    this.setState((s) => ({ faqOpen: s.faqOpen === idx ? null : idx }));
+  };
+  onNameChange = (e) => this.setState({ name: e.target.value });
+  selectType = (e) => this.setState({ calcType: e.currentTarget.dataset.key });
+  selectBed = (e) => this.setState({ bedrooms: e.currentTarget.dataset.key });
+  selectBath = (e) => this.setState({ bathrooms: e.currentTarget.dataset.key });
+  onSqftChange = (e) => this.setState({ sqft: +e.target.value });
+  roundTo(n, m) { return Math.round(n / m) * m; }
+  calcBaseRange() {
+    const s = this.state;
+    const r = RATES[s.calcType];
+    let low = Math.max(s.sqft * r.low, r.min), high = Math.max(s.sqft * r.high, r.min * 1.3);
+    const bathVal = parseFloat(s.bathrooms) || 1, bathExtra = Math.max(0, bathVal - 1);
+    low += bathExtra * BATH_EXTRA.low; high += bathExtra * BATH_EXTRA.high;
+    return { low: this.roundTo(low, 5), high: this.roundTo(high, 5) };
+  }
+  onPhoneChange = (e) => this.setState({ phone: e.target.value });
+  onEmailChange = (e) => this.setState({ email: e.target.value });
+  onPropertyTypeChange = (e) => this.setState({ propertyType: e.target.value });
+  onDatePrefChange = (e) => this.setState({ datePref: e.target.value });
+
+  fmt(n) { return '$' + Math.round(n).toLocaleString(); }
+  roundTo(n, m) { return Math.round(n / m) * m; }
+
+  submitForm = () => {
+    const s = this.state;
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const validPhone = (v) => (v.match(/\d/g) || []).length >= 7;
+    if (!s.name.trim() || !validPhone(s.phone) || !emailRe.test(s.email.trim())) {
+      this.setState({ formErr: true });
+      return;
+    }
+    this.setState({ formErr: false, sending: true });
+    const base = this.calcBaseRange();
+    const disc = s.discountType === 'percent'
+      ? { low: base.low * (1 - s.discountValue / 100), high: base.high * (1 - s.discountValue / 100) }
+      : { low: Math.max(0, base.low - s.discountValue), high: Math.max(0, base.high - s.discountValue) };
+    const estimatedRange = this.fmt(this.roundTo(disc.low, 5)) + ' – ' + this.fmt(this.roundTo(disc.high, 5));
+    const payload = {
+      p_full_name: s.name, p_phone: s.phone, p_email: s.email,
+      p_cleaning_type: s.calcType, p_sqft: s.sqft, p_bedrooms: s.bedrooms, p_bathrooms: s.bathrooms,
+      p_frequency: 'once', p_addons: '', p_estimated_range: estimatedRange,
+      p_property_type: s.propertyType, p_city: null, p_notes: null, p_sms_consent: false,
+      p_discount_code: 'ATRIUM15', p_discount_percent: s.discountType === 'percent' ? s.discountValue : null,
+      p_preferred_date: null, p_preferred_time: s.datePref || null, p_referred_by: 'Atrium Management Company'
+    };
+    fetch(SUPABASE_URL + '/rest/v1/rpc/submit_lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', apikey: SUPABASE_KEY, Authorization: 'Bearer ' + SUPABASE_KEY },
+      body: JSON.stringify(payload)
+    }).catch(() => {}).then(() => { this.setState({ sending: false, submitted: true }); });
+  };
+
+  renderVals() {
+    const s = this.state;
+    const t = s.lang === 'en' ? EN : ES;
+    const base = this.calcBaseRange();
+    const disc = s.discountType === 'percent'
+      ? { low: base.low * (1 - s.discountValue / 100), high: base.high * (1 - s.discountValue / 100) }
+      : { low: Math.max(0, base.low - s.discountValue), high: Math.max(0, base.high - s.discountValue) };
+    const badge = s.discountType === 'percent' ? (s.discountValue + '% OFF · ATRIUM15') : ('$' + s.discountValue + ' OFF · ATRIUM15');
+    const pricingTiers = [{
+      label: s.calcType === 'standard' ? t.standardLabel : (s.calcType === 'deep' ? t.deepLabel : t.deepLabel),
+      original: this.fmt(base.low) + ' – ' + this.fmt(base.high),
+      final: this.fmt(this.roundTo(disc.low, 5)) + ' – ' + this.fmt(this.roundTo(disc.high, 5)),
+      badge
+    }];
+
+    const typeOptions = [
+      { key: 'standard', label: s.lang === 'en' ? 'Standard' : 'Estándar' },
+      { key: 'deep', label: s.lang === 'en' ? 'Deep clean' : 'Deep clean' },
+      { key: 'move', label: s.lang === 'en' ? 'Move-in/out' : 'Move-in/out' }
+    ].map((o) => ({ ...o, style: o.key === s.calcType ? SEL_STYLE : UNSEL_STYLE }));
+    const bedOptions = ['Studio', '1', '2', '3', '4', '5+'].map((b) => ({ key: b, label: b, style: b === s.bedrooms ? SEL_STYLE : UNSEL_STYLE }));
+    const bathOptions = ['1', '1.5', '2', '2.5', '3+'].map((b) => ({ key: b, label: b, style: b === s.bathrooms ? SEL_STYLE : UNSEL_STYLE }));
+
+    const faqs = t.faqs.map((f, idx) => ({
+      idx, q: f.q, a: f.a,
+      iconTransform: s.faqOpen === idx ? 'rotate(45deg)' : 'none',
+      maxHeight: s.faqOpen === idx ? '160px' : '0px',
+      opacity: s.faqOpen === idx ? 1 : 0
+    }));
+
+    return {
+      t, toggleLang: this.toggleLang,
+      enActiveStyle: s.lang === 'en' ? 'color:var(--dc-gold)' : 'color:var(--text-muted)',
+      esActiveStyle: s.lang === 'es' ? 'color:var(--dc-gold)' : 'color:var(--text-muted)',
+      includedGridStyle: 'grid-template-columns:1fr 1fr',
+      pricingTiers, faqs, toggleFaq: this.toggleFaq,
+      typeOptions, bedOptions, bathOptions, selectType: this.selectType, selectBed: this.selectBed, selectBath: this.selectBath,
+      sqft: s.sqft, sqftOut: s.sqft.toLocaleString() + (s.sqft >= 6000 ? '+' : ''), onSqftChange: this.onSqftChange,
+
+      notSubmitted: !s.submitted, submitted: s.submitted,
+      name: s.name, phone: s.phone, email: s.email, propertyType: s.propertyType, datePref: s.datePref,
+      onNameChange: this.onNameChange, onPhoneChange: this.onPhoneChange, onEmailChange: this.onEmailChange,
+      onPropertyTypeChange: this.onPropertyTypeChange, onDatePrefChange: this.onDatePrefChange,
+      nameBorder: s.formErr && !s.name.trim() ? 'var(--status-danger)' : 'var(--border-subtle)',
+      phoneBorder: s.formErr && (s.phone.match(/\d/g) || []).length < 7 ? 'var(--status-danger)' : 'var(--border-subtle)',
+      emailBorder: s.formErr && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s.email.trim()) ? 'var(--status-danger)' : 'var(--border-subtle)',
+      formErr: s.formErr, submitForm: this.submitForm,
+      sendingStyle: s.sending ? 'opacity:.6' : '',
+      submitLabel: s.sending ? (s.lang === 'en' ? 'Sending…' : 'Enviando…') : t.heroCta
+    };
+  }
+}
+
+</script>
+</body>
+</html>

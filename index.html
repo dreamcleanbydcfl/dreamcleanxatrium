@@ -125,8 +125,8 @@
     </div>
     <div style="max-width:520px;margin:0 auto 40px;background:var(--surface-card);border:1px solid var(--border-subtle);border-radius:16px;padding:26px 24px">
       <div style="font-size:var(--text-caption);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--text-muted);font-weight:600;margin-bottom:9px">{{ t.calcTypeLabel }}</div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px">
-        <sc-for list="{{ typeOptions }}" as="opt" hint-placeholder-count="3">
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:18px">
+        <sc-for list="{{ typeOptions }}" as="opt" hint-placeholder-count="2">
           <div data-key="{{ opt.key }}" onClick="{{ selectType }}" style="border:1px solid var(--border-subtle);border-radius:6px;padding:11px 8px;font-size:13px;font-weight:600;cursor:pointer;text-align:center;transition:.15s;{{ opt.style }}">{{ opt.label }}</div>
         </sc-for>
       </div>
@@ -474,8 +474,7 @@ class Component extends DCLogic {
 
     const typeOptions = [
       { key: 'standard', label: s.lang === 'en' ? 'Standard' : 'Estándar' },
-      { key: 'deep', label: s.lang === 'en' ? 'Deep clean' : 'Deep clean' },
-      { key: 'move', label: s.lang === 'en' ? 'Move-in/out' : 'Move-in/out' }
+      { key: 'deep', label: s.lang === 'en' ? 'Deep clean' : 'Deep clean' }
     ].map((o) => ({ ...o, style: o.key === s.calcType ? SEL_STYLE : UNSEL_STYLE }));
     const bedOptions = ['Studio', '1', '2', '3', '4', '5+'].map((b) => ({ key: b, label: b, style: b === s.bedrooms ? SEL_STYLE : UNSEL_STYLE }));
     const bathOptions = ['1', '1.5', '2', '2.5', '3+'].map((b) => ({ key: b, label: b, style: b === s.bathrooms ? SEL_STYLE : UNSEL_STYLE }));

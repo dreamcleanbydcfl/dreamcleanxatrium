@@ -224,6 +224,18 @@
             </sc-for>
           </select>
         </div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px;position:relative">
+          <label style="font-size:var(--text-caption);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--text-muted)">{{ t.fieldAddress }}</label>
+          <input type="text" placeholder="{{ t.addressPlaceholder }}" autoComplete="off" value="{{ address }}" onChange="{{ onAddressChange }}" onFocus="{{ onAddressFocus }}" onBlur="{{ onAddressBlur }}" style="border-radius:6px;padding:11px 12px;font-size:14px;font-family:var(--font-body);color:var(--dc-espresso);background:var(--surface-canvas);outline:none;border:1px solid {{ addressBorder }}">
+          <div style="font-size:10.5px;color:var(--text-muted)">{{ t.addressNote }}</div>
+          <sc-if value="{{ showAddressSuggestions }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;top:100%;left:0;right:0;margin-top:2px;background:#fff;border:1px solid var(--border-subtle);border-radius:8px;box-shadow:var(--shadow-dark-lg);z-index:20;max-height:220px;overflow-y:auto">
+            <sc-for list="{{ addressSuggestions }}" as="sug" hint-placeholder-count="3">
+              <div data-idx="{{ sug.idx }}" onClick="{{ selectAddressSuggestion }}" style="padding:10px 12px;font-size:12.5px;color:var(--dc-espresso);cursor:pointer;border-bottom:1px solid var(--border-subtle)" style-hover="background:var(--surface-canvas)">{{ sug.label }}</div>
+            </sc-for>
+          </div>
+          </sc-if>
+        </div>
         <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:6px">
           <label style="font-size:var(--text-caption);letter-spacing:var(--tracking-caps);text-transform:uppercase;color:var(--text-muted)">{{ t.fieldDatePref }}</label>
           <input type="text" placeholder="{{ t.datePrefPlaceholder }}" value="{{ datePref }}" onChange="{{ onDatePrefChange }}" style="border-radius:6px;padding:11px 12px;font-size:14px;font-family:var(--font-body);color:var(--dc-espresso);background:var(--surface-canvas);outline:none;border:1px solid var(--border-subtle)">
@@ -304,10 +316,12 @@ const EN = {
   formEyebrow: 'Request your quote', formTitle: 'Your 15% Atrium discount',
   formSub: "Fill in your details and we'll reach out to confirm your discounted quote.",
   fieldName: 'Full name', fieldPhone: 'Phone', fieldEmail: 'Email', fieldPropertyType: 'Property type', fieldDatePref: 'Date/time preference',
+  fieldAddress: 'Service address', addressPlaceholder: '123 Main St, Apt 4B, Orlando, FL 32801',
+  addressNote: "So we can confirm your home's square footage.",
   datePrefPlaceholder: 'e.g. Saturday mornings',
   propertyOptions: [{ value:'apartment', label:'Apartment / Condo' }, { value:'townhome', label:'Townhome' }, { value:'house', label:'Single-family home' }],
   fieldDiscount: 'Discount code', discountApplied: '✓ Applied',
-  formErrMsg: 'Please complete your name, phone, and a valid email.',
+  formErrMsg: 'Please complete your name, phone, address, and a valid email.',
   formDisclaimer: 'By continuing, you agree Dream Clean may contact you about this quote.',
   thankYouTitle: 'Thank you for trusting us!', thankYouBody: "We'll reach out to schedule your cleaning within 12–24 hrs."
 };
@@ -350,10 +364,12 @@ const ES = {
   formEyebrow: 'Solicita tu cotización', formTitle: 'Tu 15% de descuento Atrium',
   formSub: 'Completa tus datos y te contactamos para confirmar tu cotización con descuento.',
   fieldName: 'Nombre completo', fieldPhone: 'Teléfono', fieldEmail: 'Email', fieldPropertyType: 'Tipo de propiedad', fieldDatePref: 'Preferencia de fecha/hora',
+  fieldAddress: 'Dirección del servicio', addressPlaceholder: 'Calle, apto/unidad, ciudad, código postal',
+  addressNote: 'Para poder confirmar los pies cuadrados de tu hogar.',
   datePrefPlaceholder: 'Ej. Sábados por la mañana',
   propertyOptions: [{ value:'apartment', label:'Apartamento / Condo' }, { value:'townhome', label:'Townhome' }, { value:'house', label:'Casa unifamiliar' }],
   fieldDiscount: 'Código de descuento', discountApplied: '✓ Aplicado',
-  formErrMsg: 'Por favor completa nombre, teléfono y un email válido.',
+  formErrMsg: 'Por favor completa nombre, teléfono, dirección y un email válido.',
   formDisclaimer: 'Al continuar, aceptas que Dream Clean te contacte sobre esta cotización.',
   thankYouTitle: '¡Gracias por confiar en nosotros!', thankYouBody: 'Te contactaremos para agendar tu limpieza dentro de las próximas 12-24 horas.'
 };
@@ -375,7 +391,8 @@ class Component extends DCLogic {
     faqOpen: null,
     discountValue: 15, discountType: 'percent',
     calcType: 'standard', sqft: 1500, bedrooms: '2', bathrooms: '2',
-    name: '', phone: '', email: '', propertyType: 'apartment', datePref: '',
+    name: '', phone: '', email: '', propertyType: 'apartment', address: '', datePref: '',
+    addressSuggestions: [], addressOpen: false,
     formErr: false, sending: false, submitted: false
   };
 
@@ -423,6 +440,30 @@ class Component extends DCLogic {
   onPhoneChange = (e) => this.setState({ phone: e.target.value });
   onEmailChange = (e) => this.setState({ email: e.target.value });
   onPropertyTypeChange = (e) => this.setState({ propertyType: e.target.value });
+  onAddressChange = (e) => {
+    const v = e.target.value;
+    this.setState({ address: v, addressOpen: true });
+    clearTimeout(this._addrTimer);
+    if (v.trim().length < 5) { this.setState({ addressSuggestions: [] }); return; }
+    this._addrTimer = setTimeout(() => this.searchAddress(v), 450);
+  };
+  async searchAddress(query) {
+    const reqId = (this._addrReqId = (this._addrReqId || 0) + 1);
+    try {
+      const res = await fetch('https://nominatim.openstreetmap.org/search?format=json&addressdetails=0&limit=5&countrycodes=us&q=' + encodeURIComponent(query));
+      const data = await res.json();
+      if (reqId !== this._addrReqId) return;
+      this.setState({ addressSuggestions: Array.isArray(data) ? data : [] });
+    } catch (e) { /* silently ignore — user can still type the address manually */ }
+  }
+  selectAddressSuggestion = (e) => {
+    const idx = +e.currentTarget.dataset.idx;
+    const item = this.state.addressSuggestions[idx];
+    if (!item) return;
+    this.setState({ address: item.display_name, addressSuggestions: [], addressOpen: false });
+  };
+  onAddressBlur = () => { setTimeout(() => this.setState({ addressOpen: false }), 150); };
+  onAddressFocus = () => { if (this.state.addressSuggestions.length) this.setState({ addressOpen: true }); };
   onDatePrefChange = (e) => this.setState({ datePref: e.target.value });
 
   fmt(n) { return '$' + Math.round(n).toLocaleString(); }
@@ -432,7 +473,7 @@ class Component extends DCLogic {
     const s = this.state;
     const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const validPhone = (v) => (v.match(/\d/g) || []).length >= 7;
-    if (!s.name.trim() || !validPhone(s.phone) || !emailRe.test(s.email.trim())) {
+    if (!s.name.trim() || !validPhone(s.phone) || !emailRe.test(s.email.trim()) || !s.address.trim()) {
       this.setState({ formErr: true });
       return;
     }
@@ -446,7 +487,7 @@ class Component extends DCLogic {
       p_full_name: s.name, p_phone: s.phone, p_email: s.email,
       p_cleaning_type: s.calcType, p_sqft: s.sqft, p_bedrooms: s.bedrooms, p_bathrooms: s.bathrooms,
       p_frequency: 'once', p_addons: '', p_estimated_range: estimatedRange,
-      p_property_type: s.propertyType, p_city: null, p_notes: null, p_sms_consent: false,
+      p_property_type: s.propertyType, p_city: null, p_notes: 'Service address: ' + s.address.trim(), p_sms_consent: false,
       p_discount_code: 'ATRIUM15', p_discount_percent: s.discountType === 'percent' ? s.discountValue : null,
       p_preferred_date: null, p_preferred_time: s.datePref || null, p_referred_by: 'Atrium Management Company'
     };
@@ -496,12 +537,16 @@ class Component extends DCLogic {
       sqft: s.sqft, sqftOut: s.sqft.toLocaleString() + (s.sqft >= 6000 ? '+' : ''), onSqftChange: this.onSqftChange,
 
       notSubmitted: !s.submitted, submitted: s.submitted,
-      name: s.name, phone: s.phone, email: s.email, propertyType: s.propertyType, datePref: s.datePref,
+      name: s.name, phone: s.phone, email: s.email, propertyType: s.propertyType, address: s.address, datePref: s.datePref,
       onNameChange: this.onNameChange, onPhoneChange: this.onPhoneChange, onEmailChange: this.onEmailChange,
-      onPropertyTypeChange: this.onPropertyTypeChange, onDatePrefChange: this.onDatePrefChange,
+      onPropertyTypeChange: this.onPropertyTypeChange, onAddressChange: this.onAddressChange, onDatePrefChange: this.onDatePrefChange,
+      onAddressBlur: this.onAddressBlur, onAddressFocus: this.onAddressFocus, selectAddressSuggestion: this.selectAddressSuggestion,
+      addressSuggestions: s.addressSuggestions.map((it, idx) => ({ idx, label: it.display_name })),
+      showAddressSuggestions: s.addressOpen && s.addressSuggestions.length > 0,
       nameBorder: s.formErr && !s.name.trim() ? 'var(--status-danger)' : 'var(--border-subtle)',
       phoneBorder: s.formErr && (s.phone.match(/\d/g) || []).length < 7 ? 'var(--status-danger)' : 'var(--border-subtle)',
       emailBorder: s.formErr && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s.email.trim()) ? 'var(--status-danger)' : 'var(--border-subtle)',
+      addressBorder: s.formErr && !s.address.trim() ? 'var(--status-danger)' : 'var(--border-subtle)',
       formErr: s.formErr, submitForm: this.submitForm,
       sendingStyle: s.sending ? 'opacity:.6' : '',
       submitLabel: s.sending ? (s.lang === 'en' ? 'Sending…' : 'Enviando…') : t.heroCta

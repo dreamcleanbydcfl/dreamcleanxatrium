@@ -93,3 +93,17 @@
   if (c === "all") window.dcLoadTracking();
   else if (c !== "essential") show();
 })();
+
+
+/* ---------------------------------------------------------------
+   Carga Google Places (para el autocompletado de direcciones) y el
+   relleno automatico de pies cuadrados. La logica vive en el sitio
+   principal para no duplicarla en cada repo. Si no carga, el cliente
+   escribe la direccion y el tamano a mano, como siempre.
+   --------------------------------------------------------------- */
+(function () {
+  var s = document.createElement("script");
+  s.src = "https://www.dreamcleanbydc.com/dc-calc.js";
+  s.defer = true;
+  document.head.appendChild(s);
+})();

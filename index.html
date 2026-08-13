@@ -450,11 +450,21 @@ class Component extends DCLogic {
   async searchAddress(query) {
     const reqId = (this._addrReqId = (this._addrReqId || 0) + 1);
     try {
-      const res = await fetch('https://nominatim.openstreetmap.org/search?format=json&addressdetails=0&limit=5&countrycodes=us&q=' + encodeURIComponent(query));
-      const data = await res.json();
-      if (reqId !== this._addrReqId) return;
-      this.setState({ addressSuggestions: Array.isArray(data) ? data : [] });
-    } catch (e) { /* silently ignore — user can still type the address manually */ }
+      // Google Places. Reemplaza al autocompletado de OpenStreetMap, cuyo
+      // uso para autocompletar y para negocios esta prohibido por su politica.
+      if (!(window.google && google.maps && google.maps.places)) { this.setState({ addressSuggestions: [] }); return; }
+      if (!this._acSvc) this._acSvc = new google.maps.places.AutocompleteService();
+      if (!this._acTok) this._acTok = new google.maps.places.AutocompleteSessionToken();
+      const self = this;
+      this._acSvc.getPlacePredictions(
+        { input: query, types: ["address"], componentRestrictions: { country: "us" }, sessionToken: this._acTok },
+        function (preds) {
+          if (reqId !== self._addrReqId) return;
+          // mismo formato que antes (display_name) para no tocar nada mas
+          self.setState({ addressSuggestions: (preds || []).map(function (p) { return { display_name: p.description }; }) });
+        }
+      );
+    } catch (e) { /* si Google falla, el cliente escribe la direccion a mano */ }
   }
   selectAddressSuggestion = (e) => {
     const idx = +e.currentTarget.dataset.idx;

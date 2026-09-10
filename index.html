@@ -28,6 +28,8 @@
   body{margin:0;background:var(--surface-canvas)}
   a{color:inherit;text-decoration:none}
   a:hover{color:var(--dc-gold)}
+  /* MOVIL - anadido 2026-09. El selector de habitaciones era repeat(6,1fr) en una tarjeta de 294px: celdas de 41px donde no cabia "Studio". El navegador normaliza el atributo style con espacios, por eso cada selector cubre las dos escrituras. */
+  @media (max-width:700px){[style*="repeat(6, 1fr)"],[style*="repeat(6,1fr)"]{grid-template-columns:repeat(3,1fr)!important}[style*="repeat(6, 1fr)"]>*,[style*="repeat(6,1fr)"]>*,[style*="repeat(5, 1fr)"]>*,[style*="repeat(5,1fr)"]>*,[style*="repeat(2, 1fr)"]>*,[style*="repeat(2,1fr)"]>*{min-height:46px!important;display:flex!important;align-items:center!important;justify-content:center!important}[style*="grid-template-columns: 1fr 1fr"],[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}[style*="padding: 130px 24px 110px"],[style*="padding:130px 24px 110px"]{padding:74px 20px 62px!important}[style*="padding: 90px 24px"],[style*="padding:90px 24px"]{padding:64px 18px!important}input,select,textarea{font-size:16px!important;min-height:46px!important}}
 </style>
 </helmet>
 
